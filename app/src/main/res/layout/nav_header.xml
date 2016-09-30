@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/spacing_large"
+    android:paddingBottom="@dimen/nav_bottom_padding"
+    android:paddingLeft="@dimen/spacing_medium"
+    android:paddingRight="@dimen/spacing_medium"
+    android:background="@color/colorPrimary">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/nav_header_user_photo"
+        android:layout_width="@dimen/nav_photo_size"
+        android:layout_height="@dimen/nav_photo_size"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="@dimen/spacing_medium"
+        fresco:placeholderImage="@drawable/user_photo_placeholder"
+        fresco:placeholderImageScaleType="centerCrop"
+        fresco:roundAsCircle="true"/>
+
+    <TextView
+        android:id="@+id/nav_header_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/nav_header_user_photo"
+        tools:text="Bunny name"
+        style="@style/AppTheme.TextView.2.White"/>
+
+    <TextView
+        android:id="@+id/nav_header_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:drawableTop="@drawable/ic_exit_to_app_white_24dp"
+        android:text="Log out"
+        style="@style/AppTheme.TextView.Clickable.1.White"/>
+
+</RelativeLayout>
