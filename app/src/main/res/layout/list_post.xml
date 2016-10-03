@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:orientation="vertical"
@@ -11,13 +12,13 @@
         android:layout_height="wrap_content"
         android:background="@android:color/white">
 
-        <ImageView
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/post_image"
             android:layout_width="match_parent"
             android:layout_height="@dimen/list_post_image_height"
-            android:scaleType="centerCrop"
-            android:contentDescription="Post image"
-            tools:src="@drawable/post_placeholder"/>
+            fresco:actualImageScaleType="centerCrop"
+            fresco:placeholderImage="@drawable/post_placeholder"
+            fresco:placeholderImageScaleType="centerCrop"/>
 
         <RelativeLayout
             android:layout_width="match_parent"

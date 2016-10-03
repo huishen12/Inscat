@@ -4,9 +4,9 @@
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingTop="@dimen/spacing_large"
-    android:paddingBottom="@dimen/nav_bottom_padding"
+    android:layout_height="@dimen/nav_header_height"
+    android:paddingTop="@dimen/spacing_medium"
+    android:paddingBottom="@dimen/spacing_large"
     android:paddingLeft="@dimen/spacing_medium"
     android:paddingRight="@dimen/spacing_medium"
     android:background="@color/colorPrimary">
@@ -16,7 +16,7 @@
         android:layout_width="@dimen/nav_photo_size"
         android:layout_height="@dimen/nav_photo_size"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginRight="@dimen/spacing_medium"
         fresco:placeholderImage="@drawable/user_photo_placeholder"
         fresco:placeholderImageScaleType="centerCrop"
@@ -27,7 +27,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/nav_header_user_photo"
-        tools:text="Bunny name"
+        android:layout_alignTop="@id/nav_header_user_photo"
+        tools:text="Bunny"
         style="@style/AppTheme.TextView.2.White"/>
 
     <TextView
@@ -37,7 +38,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:drawableTop="@drawable/ic_exit_to_app_white_24dp"
-        android:text="Log out"
         style="@style/AppTheme.TextView.Clickable.1.White"/>
 
 </RelativeLayout>

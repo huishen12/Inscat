@@ -1,14 +1,16 @@
 package com.spacebunny.hshen.inscat.view.post_detail;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.spacebunny.hshen.inscat.R;
 import com.spacebunny.hshen.inscat.model.Post;
+import com.spacebunny.hshen.inscat.view.profile_detail.ProfileActivity;
 
 class PostAdapter extends RecyclerView.Adapter {
 
@@ -37,7 +39,7 @@ class PostAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         final int viewType = getItemViewType(position);
         switch (viewType) {
             case VIEW_TYPE_POST_IMAGE:
@@ -46,10 +48,18 @@ class PostAdapter extends RecyclerView.Adapter {
                 InfoViewHolder postDetailViewHolder = (InfoViewHolder) holder;
                 postDetailViewHolder.authorName.setText(post.user.name);
                 postDetailViewHolder.description.setText(post.description);
-                Log.d("TAG", post.likes_count + " like count");
                 postDetailViewHolder.likeCount.setText(String.valueOf(post.likes_count));
                 postDetailViewHolder.commentCount.setText(String.valueOf(post.comments_count));
                 postDetailViewHolder.viewCount.setText(String.valueOf(post.views_count));
+                postDetailViewHolder.authorPhoto.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        Context context = holder.itemView.getContext();
+                        Intent intent = new Intent(context, ProfileActivity.class);
+                        context.startActivity(intent);
+                    }
+                });
                 break;
         }
     }

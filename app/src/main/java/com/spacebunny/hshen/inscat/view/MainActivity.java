@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.spacebunny.hshen.inscat.R;
 import com.spacebunny.hshen.inscat.view.post_list.PostListFragment;
@@ -110,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         View headerView = navigationView.getHeaderView(0);
 
         //TODO: change to real name
-//        ((TextView) headerView.findViewById(R.id.nav_header_user_name)).setText("Bunny");
+        ((TextView) headerView.findViewById(R.id.nav_header_user_name)).setText("Bunny");
 
         //TODO: change to real photo
 
