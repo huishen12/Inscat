@@ -22,13 +22,24 @@ public class Auth {
     public static final String REDIRECT_URI = "https://www.instagram.com/";
 
     private static String getAuthorizeUrl() {
-        String url = Uri.parse(URI_AUTHORIZE).buildUpon()
+        return  Uri.parse(URI_AUTHORIZE).buildUpon()
                 .appendQueryParameter(KEY_CLIENT_ID, CLIENT_ID)
                 .appendQueryParameter(KEY_REDIRECT_URI, REDIRECT_URI)
                 .appendQueryParameter(KEY_SCOPE, SCOPE)
                 .build()
                 .toString();
-        return url;
     }
+
+    private static String getTokenUrl(String authCode) {
+        return  Uri.parse(URI_TOKEN)
+                .buildUpon()
+                .appendQueryParameter(KEY_CLIENT_ID, CLIENT_ID)
+                .appendQueryParameter(KEY_CLIENT_SECRET, CLIENT_SECRET)
+                .appendQueryParameter(KEY_CODE, authCode)
+                .appendQueryParameter(KEY_REDIRECT_URI, REDIRECT_URI)
+                .build()
+                .toString();
+    }
+
 
 }
