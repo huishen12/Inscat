@@ -1,6 +1,17 @@
-package com.spacebunny.hshen.inscat.ins;
+package com.spacebunny.hshen.inscat.ins.auth;
 
 import android.net.Uri;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class Auth {
     public static final int REQ_CODE = 100;
@@ -41,5 +52,26 @@ public class Auth {
                 .toString();
     }
 
-
+    private static String fetchAccessToken(String authCode) throws IOException {
+        OkHttpClient client = new OkHttpClient();
+        RequestBody postBody = new FormBody.Builder()
+                .add(KEY_CLIENT_ID, CLIENT_ID)
+                .add(KEY_CLIENT_SECRET, CLIENT_SECRET)
+                .add(KEY_CODE, authCode)
+                .add(KEY_REDIRECT_URI, REDIRECT_URI)
+                .build();
+        Request request = new Request.Builder()
+                .url(URI_TOKEN)
+                .post(postBody)
+                .build();
+        Response response = client.newCall(request).execute();
+        String responseString = response.body().string();
+        try {
+            JSONObject obj = new JSONObject(responseString);
+            return obj.getString(KEY_ACCESS_TOKEN);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
 }
