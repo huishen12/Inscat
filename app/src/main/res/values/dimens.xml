@@ -23,4 +23,6 @@
     <dimen name="post_action_icon_size">32dp</dimen>
     <dimen name="toolbar_elevation">4dp</dimen>
     <dimen name="nav_photo_size">56dp</dimen>
+    <dimen name="launcher_size">72dp</dimen>
+    <dimen name="activity_auth_progress_bar_height">2dp</dimen>
 </resources>
