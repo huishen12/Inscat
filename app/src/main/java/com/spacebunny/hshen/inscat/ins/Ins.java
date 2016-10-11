@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
+import com.google.gson.reflect.TypeToken;
 import com.spacebunny.hshen.inscat.model.User;
+import com.spacebunny.hshen.inscat.utils.ModelUtils;
 
 public class Ins {
 
@@ -31,8 +33,31 @@ public class Ins {
 
     public static void init(@NonNull Context context) {
         accessToken = loadAccessToken(context);
+//        if (accessToken != null) {
+//            user = loadUser(context);
+//        }
     }
 
+
+    public static boolean isLoggedIn() {
+        return accessToken != null;
+    }
+
+    public static void login(@NonNull Context context, @NonNull String accessToken) {
+        Ins.accessToken = accessToken;
+        storeAccessToken(context, accessToken);
+
+//        Ins.user = getUser();
+//        storeUser(context, user);
+    }
+
+    public static void logout(@NonNull Context context) {
+        storeAccessToken(context, null);
+//        storeUser(context, null);
+
+        accessToken = null;
+        user = null;
+    }
 
     public static String loadAccessToken(@NonNull Context context) {
         SharedPreferences sp = context.getApplicationContext().getSharedPreferences(SP_AUTH, Context.MODE_PRIVATE);
@@ -43,5 +68,17 @@ public class Ins {
         SharedPreferences sp = context.getApplicationContext().getSharedPreferences(SP_AUTH, Context.MODE_PRIVATE);
         sp.edit().putString(KEY_ACCESS_TOKEN, token).apply();
     }
+
+    public static User getCurrentUser() {
+        return user;
+    }
+
+    public static User loadUser(@NonNull Context context) {
+        return ModelUtils.read(context, KEY_USER, new TypeToken<User>(){});
+    }
+
+//    public static User getUser() {
+//        return
+//    }
 
 }
