@@ -25,12 +25,14 @@ public class Auth {
     private static final String KEY_CLIENT_SECRET = "client_secret";
     private static final String KEY_REDIRECT_URI = "redirect_uri";
     private static final String KEY_SCOPE = "scope";
+    private static final String KEY_GRANT_TYPE = "grant_type";
     private static final String KEY_ACCESS_TOKEN = "access_token";
     private static final String KEY_RESPONSE_TYPE = "response_type";
 
     private static final String CLIENT_ID = "9ee905bfe5ac4330be62e77ae558fd59";
     private static final String CLIENT_SECRET = "3dca8d78232040e38380cd7f81da0473";
     private static final String SCOPE = "basic+public_content+follower_list+comments+likes";
+    private static final String AUTHORIZATION_CODE = "authorization_code";
     private static final String CODE = "code";
 
     private static final String URI_AUTHORIZE = "https://api.instagram.com/oauth/authorize";
@@ -69,17 +71,23 @@ public class Auth {
         RequestBody postBody = new FormBody.Builder()
                 .add(KEY_CLIENT_ID, CLIENT_ID)
                 .add(KEY_CLIENT_SECRET, CLIENT_SECRET)
+                .add(KEY_GRANT_TYPE, AUTHORIZATION_CODE)
                 .add(KEY_CODE, authCode)
                 .add(KEY_REDIRECT_URI, REDIRECT_URI)
                 .build();
+        Log.d("TAG", "Post body is " + postBody.toString());
         Request request = new Request.Builder()
                 .url(URI_TOKEN)
                 .post(postBody)
                 .build();
+        Log.d("TAG", "Request is " + request.toString());
+
         Response response = client.newCall(request).execute();
         String responseString = response.body().string();
+        Log.d("TAG", "Response is " + responseString);
         try {
             JSONObject obj = new JSONObject(responseString);
+            Log.d("TAG", "Access token is " + obj.getString(KEY_ACCESS_TOKEN));
             return obj.getString(KEY_ACCESS_TOKEN);
         } catch (JSONException e) {
             e.printStackTrace();

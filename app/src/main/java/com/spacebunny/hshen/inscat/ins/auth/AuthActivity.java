@@ -43,7 +43,8 @@ public class AuthActivity extends AppCompatActivity {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 Log.d("TAG", "URL is " + url);
-                if (url.startsWith(Auth.REDIRECT_URI)) {
+                String codeUrl = Auth.REDIRECT_URI + "/?code=";
+                if (url.startsWith(codeUrl)) {
                     Uri uri = Uri.parse(url);
                     Log.d("TAG", "uri after parse is " + uri);
                     Intent resultIntent = new Intent();
