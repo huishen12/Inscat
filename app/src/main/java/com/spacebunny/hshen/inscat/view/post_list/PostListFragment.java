@@ -51,7 +51,7 @@ public class PostListFragment extends Fragment {
         for (int i = 0; i < 20; ++i) {
             Post post = new Post();
             User user = new User();
-            user.name = "Bunny";
+            user.full_name = "Bunny";
             post.user = user;
             post.title = "post" + i;
             post.views_count = random.nextInt(10000);

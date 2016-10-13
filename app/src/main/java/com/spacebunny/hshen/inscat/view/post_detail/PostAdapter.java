@@ -46,7 +46,7 @@ class PostAdapter extends RecyclerView.Adapter {
                 break;
             case VIEW_TYPE_POST_INFO:
                 InfoViewHolder postDetailViewHolder = (InfoViewHolder) holder;
-                postDetailViewHolder.authorName.setText(post.user.name);
+                postDetailViewHolder.authorName.setText(post.user.full_name);
                 postDetailViewHolder.description.setText(post.description);
                 postDetailViewHolder.likeCount.setText(String.valueOf(post.likes_count));
                 postDetailViewHolder.commentCount.setText(String.valueOf(post.comments_count));

@@ -53,10 +53,10 @@ public class ProfileAdapter extends RecyclerView.Adapter {
             case VIEW_TYPE_PROFILE_INFO:
                 ProfileInfoViewHolder infoViewHolder = (ProfileInfoViewHolder) holder;
                 infoViewHolder.profilePhoto.setImageResource(R.drawable.user_photo_placeholder);
-                infoViewHolder.profileName.setText(user.name);
-                infoViewHolder.profileDescription.setText(user.description);
-                infoViewHolder.profileFollowing.setText(String.valueOf(user.following));
-                infoViewHolder.profileFollower.setText(String.valueOf(user.follower));
+                infoViewHolder.profileName.setText(user.full_name);
+//                infoViewHolder.profileDescription.setText(user.description);
+//                infoViewHolder.profileFollowing.setText(String.valueOf(user.following));
+//                infoViewHolder.profileFollower.setText(String.valueOf(user.follower));
                 break;
 
             case VIEW_TYPE_PROFILE_POST:

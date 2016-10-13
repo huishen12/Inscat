@@ -41,10 +41,10 @@ public class ProfileFragment extends Fragment{
 
     private User fakeUser(){
         User user = new User();
-        user.name = "Bunny";
-        user.description = "Bunny Profile description";
-        user.follower = 1212;
-        user.following = 2121;
+        user.full_name = "Bunny";
+//        user.description = "Bunny Profile description";
+//        user.follower = 1212;
+//        user.following = 2121;
         return user;
     }
 

@@ -1,6 +1,7 @@
 package com.spacebunny.hshen.inscat.view;
 
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -12,7 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.spacebunny.hshen.inscat.R;
+import com.spacebunny.hshen.inscat.ins.Ins;
 import com.spacebunny.hshen.inscat.view.post_list.PostListFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -111,9 +114,11 @@ public class MainActivity extends AppCompatActivity {
         View headerView = navigationView.getHeaderView(0);
 
         //TODO: change to real name
-        ((TextView) headerView.findViewById(R.id.nav_header_user_name)).setText("Bunny");
+        ((TextView) headerView.findViewById(R.id.nav_header_user_name)).setText(Ins.getCurrentUser().full_name);
 
         //TODO: change to real photo
+        ((SimpleDraweeView) headerView.findViewById(R.id.nav_header_user_photo))
+                .setImageURI(Uri.parse(Ins.getCurrentUser().profile_picture));
 
         //TODO: set up logout button
     }
