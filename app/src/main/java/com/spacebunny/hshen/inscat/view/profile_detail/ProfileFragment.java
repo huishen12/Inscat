@@ -1,6 +1,7 @@
 package com.spacebunny.hshen.inscat.view.profile_detail;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,7 +12,9 @@ import android.view.ViewGroup;
 
 import com.spacebunny.hshen.inscat.R;
 import com.spacebunny.hshen.inscat.model.Post;
+import com.spacebunny.hshen.inscat.model.PostCounts;
 import com.spacebunny.hshen.inscat.model.User;
+import com.spacebunny.hshen.inscat.model.UserCounts;
 import com.spacebunny.hshen.inscat.view.base.SpaceItemDecoration;
 
 import java.util.ArrayList;
@@ -19,8 +22,12 @@ import java.util.List;
 import java.util.Random;
 
 public class ProfileFragment extends Fragment{
-    public static ProfileFragment newInstance() {
-        return new ProfileFragment();
+    public static final String KEY_USER = "user";
+
+    public static ProfileFragment newInstance(@NonNull Bundle args) {
+        ProfileFragment fragment = new ProfileFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Nullable
@@ -32,6 +39,11 @@ public class ProfileFragment extends Fragment{
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+//        User user = ModelUtils.toObject(getArguments().getString(KEY_USER), new TypeToken<User>() {});
+        Bundle arguments
+                = getArguments();
+        String userid = getArguments().getString(KEY_USER);
+
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.addItemDecoration(new SpaceItemDecoration(getResources().getDimensionPixelOffset(R.dimen.spacing_medium)));
@@ -42,9 +54,9 @@ public class ProfileFragment extends Fragment{
     private User fakeUser(){
         User user = new User();
         user.full_name = "Bunny";
-//        user.description = "Bunny Profile description";
-//        user.follower = 1212;
-//        user.following = 2121;
+        user.counts = new UserCounts();
+        user.counts.follows = "1212";
+        user.counts.followed_by = "2121";
         return user;
     }
 
@@ -57,9 +69,11 @@ public class ProfileFragment extends Fragment{
             post.user = user;
             post.title = "post" + i;
             post.views_count = random.nextInt(10000);
-            post.likes_count = random.nextInt(200);
-            post.comments_count = random.nextInt(50);
-            post.description = "This is a description";
+            post.likes = new PostCounts();
+            post.likes.count = random.nextInt(200);
+            post.comments = new PostCounts();
+            post.comments.count = random.nextInt(50);
+            post.caption = "This is a description";
 
             postList.add(post);
         }

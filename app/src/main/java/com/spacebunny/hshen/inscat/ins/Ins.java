@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -39,6 +40,7 @@ public class Ins {
     private static final String KEY_DESCRIPTION = "description";
     private static final String KEY_NAME = "name";
     private static final String KEY_USER = "user";
+    private static final String KEY_COUNT = "count";
     private static final String KEY_POST_ID = "post_id";
     private static final String KEY_USER_ID = "user_id";
 
@@ -89,15 +91,28 @@ public class Ins {
         return makeRequest(request);
     }
 
-    private static <T> T parseResponse(Response response, TypeToken<T> typeToken) throws IOException, JsonSyntaxException {
+    private static <T> T parseUserResponse(Response response, TypeToken<T> typeToken) throws IOException, JsonSyntaxException {
         String responseString = response.body().string();
         Log.d(TAG, responseString);
-        JsonElement jelement = new JsonParser().parse(responseString);
-        JsonObject jobject = jelement.getAsJsonObject();
-        jobject = jobject.getAsJsonObject("data");
-        Log.d(TAG, jobject.toString());
-        return ModelUtils.toObject(jobject.toString(), typeToken);
+        JsonElement responseElement = new JsonParser().parse(responseString);
+        JsonObject metaObject = responseElement.getAsJsonObject().getAsJsonObject("meta");
+        Log.d(TAG, "User API response is " + metaObject.toString());
+        JsonObject dataObject = responseElement.getAsJsonObject().getAsJsonObject("data");
+        Log.d(TAG, "User info is " + dataObject.toString());
+        return ModelUtils.toObject(dataObject.toString(), typeToken);
     }
+
+    private static <T> T parsePostResponse(Response response, TypeToken<T> typeToken) throws IOException {
+        String responseString = response.body().string();
+        Log.d(TAG, responseString);
+        JsonElement responseElement = new JsonParser().parse(responseString);
+        JsonObject metaObject = responseElement.getAsJsonObject().getAsJsonObject("meta");
+        Log.d(TAG, "User Media API response is " + metaObject.toString());
+        JsonArray dataArray = responseElement.getAsJsonObject().getAsJsonArray("data");
+        Log.d(TAG, "Media info is " + dataArray.toString());
+        return ModelUtils.toObject(dataArray.toString(), typeToken);
+    }
+
 
     private static void checkStatusCode(Response response, int statusCode) throws IOException {
         if (response.code() != statusCode) {
@@ -121,9 +136,12 @@ public class Ins {
         storeAccessToken(context, accessToken);
 
         Ins.user = getUserSelf();
-        Log.d(TAG, "User is " + user);
-        Log.d(TAG, "User self name is " + user.full_name);
         storeUser(context, user);
+
+        List<Post> posts = getPostListSelf();
+        List<Post> likedPosts= getLikedPostListSelf();
+        Log.d(TAG, "posts are found");
+
     }
 
     public static void logout(@NonNull Context context) {
@@ -159,11 +177,26 @@ public class Ins {
     public static User getUserSelf() throws IOException, JsonSyntaxException {
         String userSelfUrl = USER_END_POINT + "self/";
         Log.v(TAG, "Get user self url " + userSelfUrl);
-        return parseResponse(makeGetRequest(userSelfUrl), USER_TYPE);
+        return parseUserResponse(makeGetRequest(userSelfUrl), USER_TYPE);
     }
 
     public static User getUser(String userId) throws IOException, JsonSyntaxException {
         String userUrl = USER_END_POINT + userId + "/";
-        return parseResponse(makeGetRequest(userUrl), USER_TYPE);
+        return parseUserResponse(makeGetRequest(userUrl), USER_TYPE);
+    }
+
+    public static List<Post> getPostListSelf() throws IOException, JsonSyntaxException {
+        String postListSelfUrl = USER_END_POINT + "self/media/recent/";
+        return parsePostResponse(makeGetRequest(postListSelfUrl), POST_LIST_TYPE);
+    }
+
+    public static List<Post> getPostListUser(String userId) throws IOException, JsonSyntaxException {
+        String postListUserUrl = USER_END_POINT + userId + "/media/recent/";
+        return parsePostResponse(makeGetRequest(postListUserUrl), POST_LIST_TYPE);
+    }
+
+    public static List<Post> getLikedPostListSelf() throws IOException, JsonSyntaxException {
+        String likedPostListSelfUrl = USER_END_POINT + "self/media/liked";
+        return parsePostResponse(makeGetRequest(likedPostListSelfUrl), POST_LIST_TYPE);
     }
 }

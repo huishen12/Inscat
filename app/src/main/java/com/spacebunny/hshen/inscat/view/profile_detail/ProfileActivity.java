@@ -11,6 +11,6 @@ public class ProfileActivity extends SingleFragmentActivity {
     @NonNull
     @Override
     protected Fragment newFragment() {
-        return ProfileFragment.newInstance();
+        return ProfileFragment.newInstance(getIntent().getExtras());
     }
 }

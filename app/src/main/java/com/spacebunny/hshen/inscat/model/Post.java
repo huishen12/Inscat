@@ -1,19 +1,36 @@
 package com.spacebunny.hshen.inscat.model;
 
-/**
- * Created by Hui on 9/22/16.
- */
-public class Post {
-    public String id;
-    public String title;
-    public String description;
+import android.support.annotation.NonNull;
 
-    public int width;
-    public int height;
+public class Post {
+    public String type;
+    public String link;
+    public String title;
+
+    public String id;
+    public User user;
+    public String caption;
 
     public int views_count;
-    public int likes_count;
-    public int comments_count;
+    public PostCounts likes;
+    public PostCounts comments;
 
-    public User user;
+    public PostImages images;
+
+    @NonNull
+    public String getImageUrl() {
+        if (images == null) {
+            return "";
+        }
+
+        String url;
+        if (images.standard_resolution.url != null)
+            url = images.standard_resolution.url;
+        else if (images.low_resolution.url != null)
+            url = images.low_resolution.url;
+        else
+            url = images.thumbnail.url;
+
+        return url;
+    }
 }

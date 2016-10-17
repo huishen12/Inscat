@@ -55,15 +55,15 @@ public class ProfileAdapter extends RecyclerView.Adapter {
                 infoViewHolder.profilePhoto.setImageResource(R.drawable.user_photo_placeholder);
                 infoViewHolder.profileName.setText(user.full_name);
 //                infoViewHolder.profileDescription.setText(user.description);
-//                infoViewHolder.profileFollowing.setText(String.valueOf(user.following));
-//                infoViewHolder.profileFollower.setText(String.valueOf(user.follower));
+                infoViewHolder.profileFollowing.setText(String.valueOf(user.counts.follows));
+                infoViewHolder.profileFollower.setText(String.valueOf(user.counts.followed_by));
                 break;
 
             case VIEW_TYPE_PROFILE_POST:
                 final Post post = data.get(position);
                 PostViewHolder postViewHolder = (PostViewHolder) holder;
-                postViewHolder.likeCount.setText(String.valueOf(post.likes_count));
-                postViewHolder.commentCount.setText(String.valueOf(post.comments_count));
+                postViewHolder.likeCount.setText(String.valueOf(post.likes.count));
+                postViewHolder.commentCount.setText(String.valueOf(post.comments.count));
                 postViewHolder.viewCount.setText(String.valueOf(post.views_count));
                 postViewHolder.cover.setOnClickListener(new View.OnClickListener() {
                     @Override

@@ -11,7 +11,7 @@ public class ProfileInfoViewHolder extends RecyclerView.ViewHolder {
 
     ImageView profilePhoto;
     TextView profileName;
-    TextView profileDescription;
+    TextView profileCaption;
     TextView profileFollower;
     TextView profileFollowing;
 
@@ -19,7 +19,7 @@ public class ProfileInfoViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         profilePhoto = (ImageView) itemView.findViewById(R.id.profile_photo);
         profileName = (TextView) itemView.findViewById(R.id.profile_name);
-        profileDescription = (TextView) itemView.findViewById(R.id.profile_description);
+        profileCaption = (TextView) itemView.findViewById(R.id.profile_description);
         profileFollower = (TextView) itemView.findViewById(R.id.profile_follower);
         profileFollowing = (TextView) itemView.findViewById(R.id.profile_following);
     }
