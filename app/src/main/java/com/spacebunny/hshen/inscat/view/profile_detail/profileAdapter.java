@@ -2,18 +2,24 @@ package com.spacebunny.hshen.inscat.view.profile_detail;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.interfaces.DraweeController;
 import com.google.gson.reflect.TypeToken;
 import com.spacebunny.hshen.inscat.R;
 import com.spacebunny.hshen.inscat.model.Post;
 import com.spacebunny.hshen.inscat.model.User;
 import com.spacebunny.hshen.inscat.utils.ModelUtils;
+import com.spacebunny.hshen.inscat.utils.UIUtils;
 import com.spacebunny.hshen.inscat.view.post_detail.PostActivity;
 import com.spacebunny.hshen.inscat.view.post_detail.PostFragment;
+import com.spacebunny.hshen.inscat.view.post_list.PostListAdapter;
 import com.spacebunny.hshen.inscat.view.post_list.PostViewHolder;
 
 import java.util.List;
@@ -23,10 +29,16 @@ public class ProfileAdapter extends RecyclerView.Adapter {
     private List<Post> data;
     private static final int VIEW_TYPE_PROFILE_INFO = 0;
     private static final int VIEW_TYPE_PROFILE_POST = 1;
+    private static final int VIEW_TYPE_PROFILE_LOADING = 2;
 
-    ProfileAdapter(User user, List<Post> data) {
+    private UIUtils.LoadMoreListener loadMoreListener;
+    private boolean showLoading;
+
+    ProfileAdapter(User user, List<Post> data, @NonNull UIUtils.LoadMoreListener loadMoreListener) {
         this.user = user;
         this.data = data;
+        this.loadMoreListener = loadMoreListener;
+        this.showLoading = true;
     }
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -40,6 +52,9 @@ public class ProfileAdapter extends RecyclerView.Adapter {
                 view = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.list_post, parent, false);
                 return new PostViewHolder(view);
+            case VIEW_TYPE_PROFILE_LOADING:
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_loading, parent, false);
+                return new RecyclerView.ViewHolder(view) {};
             default:
                 return null;
         }
@@ -50,9 +65,11 @@ public class ProfileAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         final int viewType = getItemViewType(position);
         switch (viewType) {
+            case VIEW_TYPE_PROFILE_LOADING:
+                loadMoreListener.onLoadMore();
             case VIEW_TYPE_PROFILE_INFO:
                 ProfileInfoViewHolder infoViewHolder = (ProfileInfoViewHolder) holder;
-                infoViewHolder.profilePhoto.setImageResource(R.drawable.user_photo_placeholder);
+                infoViewHolder.profilePhoto.setImageURI(Uri.parse(user.profile_picture));
                 infoViewHolder.profileName.setText(user.full_name);
 //                infoViewHolder.profileDescription.setText(user.description);
                 infoViewHolder.profileFollowing.setText(String.valueOf(user.counts.follows));
@@ -65,6 +82,13 @@ public class ProfileAdapter extends RecyclerView.Adapter {
                 postViewHolder.likeCount.setText(String.valueOf(post.likes.count));
                 postViewHolder.commentCount.setText(String.valueOf(post.comments.count));
                 postViewHolder.viewCount.setText(String.valueOf(post.views_count));
+
+                DraweeController controller = Fresco.newDraweeControllerBuilder()
+                                                .setUri(Uri.parse(post.getImageUrl()))
+                                                .setAutoPlayAnimations(true)
+                                                .build();
+                postViewHolder.image.setController(controller);
+
                 postViewHolder.cover.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -80,7 +104,7 @@ public class ProfileAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return showLoading ? data.size() + 1 : data.size();
     }
 
     @Override
@@ -88,8 +112,25 @@ public class ProfileAdapter extends RecyclerView.Adapter {
         if (position == 0) {
             return VIEW_TYPE_PROFILE_INFO;
         }
+        else if (position >= data.size()){
+            return VIEW_TYPE_PROFILE_LOADING;
+        }
         else {
             return VIEW_TYPE_PROFILE_POST;
         }
+    }
+
+    public void append(@NonNull List<Post> morePosts) {
+        data.addAll(morePosts);
+        notifyDataSetChanged();
+    }
+
+    public int getDataCount() {
+        return data.size();
+    }
+
+    public void setShowLoading(boolean showLoading) {
+        this.showLoading = showLoading;
+        notifyDataSetChanged();
     }
 }

@@ -16,6 +16,7 @@ import com.google.gson.reflect.TypeToken;
 import com.spacebunny.hshen.inscat.R;
 import com.spacebunny.hshen.inscat.model.Post;
 import com.spacebunny.hshen.inscat.utils.ModelUtils;
+import com.spacebunny.hshen.inscat.utils.UIUtils;
 import com.spacebunny.hshen.inscat.view.post_detail.PostActivity;
 import com.spacebunny.hshen.inscat.view.post_detail.PostFragment;
 
@@ -27,10 +28,10 @@ public class PostListAdapter extends RecyclerView.Adapter {
     private static final int VIEW_TYPE_LOADING = 2;
 
     private List<Post> data;
-    private LoadMoreListener loadMoreListener;
+    private UIUtils.LoadMoreListener loadMoreListener;
     private boolean showLoading;
 
-    public PostListAdapter(@NonNull List<Post> data,  @NonNull LoadMoreListener loadMoreListener) {
+    public PostListAdapter(@NonNull List<Post> data,  @NonNull UIUtils.LoadMoreListener loadMoreListener) {
         this.data = data;
         this.loadMoreListener = loadMoreListener;
         this.showLoading = true;
@@ -106,9 +107,5 @@ public class PostListAdapter extends RecyclerView.Adapter {
     public void setShowLoading(boolean showLoading) {
         this.showLoading = showLoading;
         notifyDataSetChanged();
-    }
-
-    public interface LoadMoreListener {
-        void onLoadMore();
     }
 }

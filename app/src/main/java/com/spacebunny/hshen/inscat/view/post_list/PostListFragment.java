@@ -18,6 +18,7 @@ import com.spacebunny.hshen.inscat.R;
 import com.spacebunny.hshen.inscat.ins.Ins;
 import com.spacebunny.hshen.inscat.model.Post;
 import com.spacebunny.hshen.inscat.model.User;
+import com.spacebunny.hshen.inscat.utils.UIUtils;
 import com.spacebunny.hshen.inscat.view.base.SpaceItemDecoration;
 
 import java.io.IOException;
@@ -39,7 +40,6 @@ public class PostListFragment extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         RecyclerView view = (RecyclerView) inflater.inflate(R.layout.fragment_recycler_view, container, false);
-        Log.d("TAG", "Post view is creating");
         return view;
     }
 
@@ -53,7 +53,7 @@ public class PostListFragment extends Fragment {
 
         //TO DO change to real data
 //        PostListAdapter adapter = new PostListAdapter(fakeData());
-        adapter = new PostListAdapter(new ArrayList<Post>(), new PostListAdapter.LoadMoreListener() {
+        adapter = new PostListAdapter(new ArrayList<Post>(), new UIUtils.LoadMoreListener() {
             @Override
             public void onLoadMore() {
                 AsyncTaskCompat.executeParallel(new LoadPostTask(adapter.getDataCount() / Ins.COUNT_PER_PAGE + 1));

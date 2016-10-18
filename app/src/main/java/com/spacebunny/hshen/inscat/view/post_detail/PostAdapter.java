@@ -11,9 +11,11 @@ import android.view.ViewGroup;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
+import com.google.gson.reflect.TypeToken;
 import com.spacebunny.hshen.inscat.R;
 import com.spacebunny.hshen.inscat.model.Post;
 import com.spacebunny.hshen.inscat.model.User;
+import com.spacebunny.hshen.inscat.utils.ModelUtils;
 import com.spacebunny.hshen.inscat.view.profile_detail.ProfileActivity;
 import com.spacebunny.hshen.inscat.view.profile_detail.ProfileFragment;
 
@@ -69,7 +71,8 @@ class PostAdapter extends RecyclerView.Adapter {
                     public void onClick(View v) {
                         Context context = holder.itemView.getContext();
                         Intent intent = new Intent(context, ProfileActivity.class);
-                        intent.putExtra(ProfileFragment.KEY_USER, user.id);
+                        intent.putExtra(ProfileFragment.KEY_USER, ModelUtils.toString(user, new TypeToken<User>() {
+                        }));
                         context.startActivity(intent);
                     }
                 });
