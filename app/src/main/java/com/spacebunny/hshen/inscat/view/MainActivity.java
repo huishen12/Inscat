@@ -1,5 +1,7 @@
 package com.spacebunny.hshen.inscat.view;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,9 +16,15 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.gson.reflect.TypeToken;
 import com.spacebunny.hshen.inscat.R;
 import com.spacebunny.hshen.inscat.ins.Ins;
+import com.spacebunny.hshen.inscat.model.User;
+import com.spacebunny.hshen.inscat.utils.ModelUtils;
+import com.spacebunny.hshen.inscat.view.post_list.LikeListFragment;
 import com.spacebunny.hshen.inscat.view.post_list.PostListFragment;
+import com.spacebunny.hshen.inscat.view.profile_detail.ProfileActivity;
+import com.spacebunny.hshen.inscat.view.profile_detail.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -86,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                         setTitle("Inscat");
                         break;
                     case R.id.drawer_item_likes:
-                        fragment = PostListFragment.newInstance();
+                        fragment = LikeListFragment.newInstance();
                         setTitle("Likes");
                         break;
                     case R.id.drawer_item_categories:
@@ -117,8 +125,19 @@ public class MainActivity extends AppCompatActivity {
         ((TextView) headerView.findViewById(R.id.nav_header_user_name)).setText(Ins.getCurrentUser().full_name);
 
         //TODO: change to real photo
-        ((SimpleDraweeView) headerView.findViewById(R.id.nav_header_user_photo))
-                .setImageURI(Uri.parse(Ins.getCurrentUser().profile_picture));
+        final SimpleDraweeView userPhoto = ((SimpleDraweeView) headerView.findViewById(R.id.nav_header_user_photo));
+        userPhoto.setImageURI(Uri.parse(Ins.getCurrentUser().profile_picture));
+        userPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = userPhoto.getContext();
+                Intent intent = new Intent(context, ProfileActivity.class);
+                intent.putExtra(ProfileFragment.KEY_USER, ModelUtils.toString(Ins.getCurrentUser(), new TypeToken<User>(){
+                }));
+                context.startActivity(intent);
+            }
+        });
+
 
         //TODO: set up logout button
     }

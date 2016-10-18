@@ -25,8 +25,6 @@ import com.spacebunny.hshen.inscat.model.UserCounts;
 import com.spacebunny.hshen.inscat.utils.ModelUtils;
 import com.spacebunny.hshen.inscat.utils.UIUtils;
 import com.spacebunny.hshen.inscat.view.base.SpaceItemDecoration;
-import com.spacebunny.hshen.inscat.view.post_list.PostListAdapter;
-import com.spacebunny.hshen.inscat.view.post_list.PostListFragment;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,9 +32,11 @@ import java.util.List;
 import java.util.Random;
 
 public class ProfileFragment extends Fragment{
+    public static final String TAG = "Profile Fragment";
     public static final String KEY_USER = "user";
 
-    ProfileAdapter adapter;
+    private ProfileAdapter adapter;
+    User user;
 
     public static ProfileFragment newInstance(@NonNull Bundle args) {
         ProfileFragment fragment = new ProfileFragment();
@@ -53,10 +53,11 @@ public class ProfileFragment extends Fragment{
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        User user = ModelUtils.toObject(getArguments().getString(KEY_USER), new TypeToken<User>() {});
+        user = ModelUtils.toObject(getArguments().getString(KEY_USER), new TypeToken<User>() {});
         user.counts = new UserCounts();
         user.counts.followed_by= "2121";
         user.counts.follows = "1212";
+        Log.d(TAG, "User is " + user.full_name);
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -64,22 +65,28 @@ public class ProfileFragment extends Fragment{
 //        ProfileAdapter adapter = new ProfileAdapter(user, fakeData());
 //        recyclerView.setAdapter(adapter);
 
-        adapter = new ProfileAdapter(new User(), new ArrayList<Post>(), new UIUtils.LoadMoreListener() {
+//        AsyncTask<Void, Void, User> newuser = AsyncTaskCompat.executeParallel(new LoadProfileTask(user.id));
+
+        adapter = new ProfileAdapter(user, new ArrayList<Post>(), new UIUtils.LoadMoreListener() {
             @Override
             public void onLoadMore() {
-                AsyncTaskCompat.executeParallel(new ProfileFragment.LoadProfileTask(user.id));
-                AsyncTaskCompat.executeParallel(new ProfileFragment.LoadPostTask(adapter.getDataCount() / Ins.COUNT_PER_PAGE + 1));
+//                AsyncTaskCompat.executeParallel(new ProfileFragment.LoadProfileTask(user.id));
+                AsyncTaskCompat.executeParallel(new LoadPostTask(adapter.getDataCount() / Ins.COUNT_PER_PAGE + 1, user.id));
             }
         });
         recyclerView.setAdapter(adapter);
     }
 
-    private class LoadProfileTask extends AsyncTask<String, Void, User> {
+    private class LoadProfileTask extends AsyncTask<Void, Void, User> {
+        String userid;
+
+        public LoadProfileTask(String userid) {
+            this.userid = userid;
+        }
 
         @Override
-        protected User doInBackground(String... userids) {
+        protected User doInBackground(Void... params) {
             try {
-                String userid = userids[0];
                 return Ins.getUser(userid);
             } catch (IOException | JsonSyntaxException e) {
                 e.printStackTrace();
@@ -88,20 +95,23 @@ public class ProfileFragment extends Fragment{
         }
     }
 
-    private class LoadPostTask extends AsyncTask<String, Void, List<Post>> {
-
+    private class LoadPostTask extends AsyncTask<Void, Void, List<Post>> {
         int page;
+        String userid;
 
-        public LoadPostTask(int page) {
+        public LoadPostTask(int page, String userid) {
             this.page = page;
-            Log.d("TAG", "page number is " + page);
+            this.userid = userid;
+            Log.d(TAG, "Page number is " + page);
+            Log.d(TAG, "User id is " + userid);
         }
 
         @Override
-        protected List<Post> doInBackground(String... userids) {
+        protected List<Post> doInBackground(Void... params) {
             try {
-                String userid = userids[0];
-                return Ins.getPostListUser(userid);
+                List<Post> posts = Ins.getPostListUser(userid);
+                Log.d(TAG, "Posts are " + posts);
+                return posts;
             } catch (IOException | JsonSyntaxException e) {
                 e.printStackTrace();
                 return null;

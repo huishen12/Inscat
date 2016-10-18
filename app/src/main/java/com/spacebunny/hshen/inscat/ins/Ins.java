@@ -192,7 +192,9 @@ public class Ins {
 
     public static List<Post> getPostListUser(String userId) throws IOException, JsonSyntaxException {
         String postListUserUrl = USER_END_POINT + userId + "/media/recent/";
-        return parsePostResponse(makeGetRequest(postListUserUrl), POST_LIST_TYPE);
+        List<Post> posts = parsePostResponse(makeGetRequest(postListUserUrl), POST_LIST_TYPE);
+        Log.d(TAG, "Posts are " + posts.size());
+        return posts;
     }
 
     public static List<Post> getLikedPostListSelf() throws IOException, JsonSyntaxException {

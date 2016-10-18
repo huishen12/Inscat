@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,12 +20,12 @@ import com.spacebunny.hshen.inscat.utils.ModelUtils;
 import com.spacebunny.hshen.inscat.utils.UIUtils;
 import com.spacebunny.hshen.inscat.view.post_detail.PostActivity;
 import com.spacebunny.hshen.inscat.view.post_detail.PostFragment;
-import com.spacebunny.hshen.inscat.view.post_list.PostListAdapter;
 import com.spacebunny.hshen.inscat.view.post_list.PostViewHolder;
 
 import java.util.List;
 
 public class ProfileAdapter extends RecyclerView.Adapter {
+    public static final String TAG = "Profile Adapter";
     private User user;
     private List<Post> data;
     private static final int VIEW_TYPE_PROFILE_INFO = 0;
@@ -67,6 +68,8 @@ public class ProfileAdapter extends RecyclerView.Adapter {
         switch (viewType) {
             case VIEW_TYPE_PROFILE_LOADING:
                 loadMoreListener.onLoadMore();
+                break;
+
             case VIEW_TYPE_PROFILE_INFO:
                 ProfileInfoViewHolder infoViewHolder = (ProfileInfoViewHolder) holder;
                 infoViewHolder.profilePhoto.setImageURI(Uri.parse(user.profile_picture));
@@ -77,7 +80,7 @@ public class ProfileAdapter extends RecyclerView.Adapter {
                 break;
 
             case VIEW_TYPE_PROFILE_POST:
-                final Post post = data.get(position);
+                final Post post = data.get(position-1);
                 PostViewHolder postViewHolder = (PostViewHolder) holder;
                 postViewHolder.likeCount.setText(String.valueOf(post.likes.count));
                 postViewHolder.commentCount.setText(String.valueOf(post.comments.count));
@@ -104,11 +107,13 @@ public class ProfileAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return showLoading ? data.size() + 1 : data.size();
+        return showLoading ? data.size() + 2 : data.size() + 1;
     }
 
     @Override
     public int getItemViewType(int position){
+        Log.d("TAG", "Position is " + position);
+        Log.d("TAG", "Data size in view type is " + data.size());
         if (position == 0) {
             return VIEW_TYPE_PROFILE_INFO;
         }
@@ -125,7 +130,10 @@ public class ProfileAdapter extends RecyclerView.Adapter {
         notifyDataSetChanged();
     }
 
+
+
     public int getDataCount() {
+        Log.d(TAG, "Data size is " + data.size());
         return data.size();
     }
 
