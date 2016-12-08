@@ -35,6 +35,16 @@
 
         <activity android:name=".view.profile_detail.ProfileActivity" />
 
+        <activity android:name=".view.like_list.LikeListActivity" />
+
+        <activity android:name=".view.comment_list.CommentListActivity" />
+
+        <activity android:name=".view.favorite_list.ChooseCategoryActivity"/>
+
+        <activity android:name=".view.favorite_list.CategoryPostListActivity"/>
+
+        <activity android:name="com.spacebunny.hshen.inscat.AndroidDatabaseManager"
+                  android:theme="@style/Theme.AppCompat.Light"/>
 
     </application>
 

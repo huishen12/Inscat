@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="5e412e954a24c5310a459c09870e4e2081aceb03">
+        <dex dex="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/pre-dexed/debug/com.android.support-cardview-v7-23.1.1_f779e1c47fbcfcaa2977d817d7135ecdc5695603.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.1/jars/libs/internal_impl-23.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="607a3d0b8013b4ccbfeb0b7cb293351994e021fb">
+        <dex dex="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/pre-dexed/debug/internal_impl-23.2.1_1ba98c3b96e993da5fb96a76f38e411f6fd064d4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hshen/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.9.0/f824591a0016efbaeddb8300bee54832a1398cfa/okio-1.9.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="f824591a0016efbaeddb8300bee54832a1398cfa">
+        <dex dex="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/pre-dexed/debug/okio-1.9.0_dadc6b16ad8920110d3caee7316e65474fe81161.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.1.1_df4ec46fd3a32ad60b0012304f5b818bb28b69a6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/0.13.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="4985047e64ea8daf00e923aac6386de67fbd5676">
+        <dex dex="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fresco-0.13.0_58153c08a64762164c9f8825c2cfb115b8eae60f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="3be474b1b21b31cf2fa93fe6bd641ae108d96452">
+        <dex dex="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.2.1_6bac1f3b1594d4a371eaae166b036c3a3b721569.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.13.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="0aa38f91d7e6c9d5983d2148741de45b6cc5949b">
+        <dex dex="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-0.13.0_bf3d0269fdbbdac1487ea56e4712ce7e6e5663b8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
+        <dex dex="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/pre-dexed/debug/com.android.support-design-23.1.1_23681fee5ed35a866ff1f464d7d5e76cf94af93f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hshen/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.4.1/c7c4f9e35c2fd5900da24f9872e3971801f08ce0/okhttp-3.4.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="c7c4f9e35c2fd5900da24f9872e3971801f08ce0">
+        <dex dex="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/pre-dexed/debug/okhttp-3.4.1_b1a44025527f488ab1907b2c3c72d693199d6451.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/exploded-aar/com.jakewharton/butterknife/8.0.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="74ca46e7da11e3d065eb64cdbe6568a7ed74c211">
+        <dex dex="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/pre-dexed/debug/com.jakewharton-butterknife-8.0.1_84fd02663fa8b6854f29e7478b220dc781dcf2cb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
+        <dex dex="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-23.1.1_4985b3f22c23553e0ef8241631b3254819655b71.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hshen/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/pre-dexed/debug/bolts-tasks-1.4.0_1d585da30b192b57bbc38ad9eb4c47a8f29f2e76.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hshen/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/pre-dexed/debug/support-annotations-23.3.0_b2bda25c786d17f588f752347876dc518a92eee7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/0.13.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="e818c866cdd1e9b94d54a3ffbd7420dca384746a">
+        <dex dex="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-base-0.13.0_e40970ed895cbad172ab8042f356df80061c7b07.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hshen/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.0.1/345b89f45d02d8b09400b472fab7b7e38f4ede1f/butterknife-annotations-8.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="345b89f45d02d8b09400b472fab7b7e38f4ede1f">
+        <dex dex="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/pre-dexed/debug/butterknife-annotations-8.0.1_acfd3f5dd254aff96d8163d18edadd3de165addb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/exploded-aar/com.facebook.fresco/animated-gif/0.13.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="017cbad0ef8876fc041eb28b642a33c3762fe774">
+        <dex dex="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-animated-gif-0.13.0_4fcd2ec4715a875ee0774afcc8eb6706471e4062.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hshen/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.7/751f548c85fa49f330cecbb1875893f971b33c4e/gson-2.7.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
+        <dex dex="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/pre-dexed/debug/gson-2.7_d3a610862baae0fbba0a97fb4f65aeaaa1dc207c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/exploded-aar/com.facebook.fresco/animated-base/0.13.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="2bea506ec2a27189b7d3198ea11431304c8f7549">
+        <dex dex="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-animated-base-0.13.0_f30bc06134f6cae8a0db8c4852017a954c13d473.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/0.13.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="9bab39d73226491b969ef7ffebeae2e6e525e98f">
+        <dex dex="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fbcore-0.13.0_cab49ea2e4c5bcb7b3ae38e505f725c53df1ff3f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/0.13.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="db1ed61a6eaa9d50ff214daf79ed485877aaa58a">
+        <dex dex="/Users/hshen/Documents/testcode/Inscat/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-drawee-0.13.0_e1a9e863ee401a3a6741e63c4d2065d5a46e76fb.jar" />
+    </item>
+
+</items>

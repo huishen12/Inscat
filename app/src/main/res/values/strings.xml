@@ -14,4 +14,13 @@
     <string name="comment">Comment</string>
     <string name="open_drawer">open drawer</string>
     <string name="close_drawer">close drawer</string>
+    <string name="share_post">Share this cute photo!</string>
+
+    <string name="post_count">{0,choice,0#0 post|1#1 post|1&lt;{0} posts}</string>
+    <string name="new_category_title">New Category</string>
+    <string name="new_category_create">Create</string>
+    <string name="new_category_cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="choose_category">Choose Category</string>
+    <string name="category">Category</string>
 </resources>

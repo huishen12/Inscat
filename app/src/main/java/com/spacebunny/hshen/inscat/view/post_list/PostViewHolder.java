@@ -12,7 +12,6 @@ public class PostViewHolder extends RecyclerView.ViewHolder  {
     public View cover;
     public TextView likeCount;
     public TextView commentCount;
-    public TextView viewCount;
     public SimpleDraweeView image;
 
     public PostViewHolder(View itemView) {
@@ -20,7 +19,6 @@ public class PostViewHolder extends RecyclerView.ViewHolder  {
         cover = (View) itemView.findViewById(R.id.post_clickable_cover);
         likeCount = (TextView) itemView.findViewById(R.id.post_like_count);
         commentCount = (TextView) itemView.findViewById(R.id.post_comment_count);
-        viewCount = (TextView) itemView.findViewById(R.id.post_view_count);
         image = (SimpleDraweeView) itemView.findViewById(R.id.post_image);
     }
 }

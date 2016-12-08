@@ -25,17 +25,6 @@
             android:layout_height="@dimen/list_post_detail_bar_height">
 
             <TextView
-                android:id="@+id/post_view_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/spacing_medium"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/post_like_count"
-                android:drawableLeft="@drawable/ic_visibility_grey_600_18dp"
-                android:drawablePadding="@dimen/spacing_xsmall"
-                tools:text="22"/>
-
-            <TextView
                 android:id="@+id/post_like_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

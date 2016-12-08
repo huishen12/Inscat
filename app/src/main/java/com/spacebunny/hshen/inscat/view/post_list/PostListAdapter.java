@@ -61,7 +61,6 @@ public class PostListAdapter extends RecyclerView.Adapter {
             PostViewHolder postViewHolder = (PostViewHolder) holder;
             postViewHolder.likeCount.setText(String.valueOf(post.likes.count));
             postViewHolder.commentCount.setText(String.valueOf(post.comments.count));
-            postViewHolder.viewCount.setText(String.valueOf(post.views_count));
 
             DraweeController controller = Fresco.newDraweeControllerBuilder()
                                             .setUri(Uri.parse(post.getImageUrl()))

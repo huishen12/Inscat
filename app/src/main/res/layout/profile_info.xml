@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profile_info"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -29,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/profile_photo"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/spacing_medium"
+            android:layout_marginTop="@dimen/spacing_medium_small"
             tools:text="Bunny name"
             style="@style/AppTheme.TextView.2.White"/>
 
@@ -37,11 +38,21 @@
             android:id="@+id/profile_follower"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/profile_name"
-            android:layout_alignTop="@id/profile_name"
+            android:layout_toLeftOf="@+id/profile_name"
+            android:layout_alignTop="@+id/profile_name"
             android:layout_marginRight="@dimen/spacing_xlarge"
-            tools:text="follower"
             style="@style/AppTheme.TextView.2.White"/>
+
+        <TextView
+            android:id="@+id/profile_follower_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/profile_name"
+            android:layout_above="@+id/profile_follower"
+            android:layout_marginBottom="@dimen/spacing_xsmall"
+            android:layout_marginRight="@dimen/spacing_large"
+            tools:text="followers"
+            style="@style/AppTheme.TextView.1"/>
 
         <TextView
             android:id="@+id/profile_following"
@@ -50,20 +61,30 @@
             android:layout_toRightOf="@id/profile_name"
             android:layout_alignTop="@id/profile_name"
             android:layout_marginLeft="@dimen/spacing_xlarge"
-            tools:text="following"
             style="@style/AppTheme.TextView.2.White"/>
+
+        <TextView
+            android:id="@+id/profile_following_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/profile_name"
+            android:layout_above="@+id/profile_following"
+            android:layout_marginBottom="@dimen/spacing_xsmall"
+            android:layout_marginLeft="@dimen/spacing_large"
+            tools:text="followering"
+            style="@style/AppTheme.TextView.1"/>
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/profile_description"
+        android:id="@+id/profile_bio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
-        android:layout_marginTop="@dimen/spacing_medium"
+        android:layout_marginTop="@dimen/spacing_medium_small"
         android:layout_marginLeft="@dimen/spacing_large"
         android:layout_marginRight="@dimen/spacing_large"
-        android:layout_marginBottom="@dimen/spacing_large"
+        android:layout_marginBottom="@dimen/spacing_medium"
         tools:text="This is a description.This is a description. \n This is a description."
         style="@style/AppTheme.TextView.1.White"/>
 </LinearLayout>

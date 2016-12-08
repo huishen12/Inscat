@@ -11,11 +11,14 @@ public class Post {
     public User user;
     public String caption;
 
-    public int views_count;
     public PostCounts likes;
     public PostCounts comments;
 
+    public int category_count;
+
     public PostImages images;
+
+    public boolean categoryed;
 
     @NonNull
     public String getImageUrl() {

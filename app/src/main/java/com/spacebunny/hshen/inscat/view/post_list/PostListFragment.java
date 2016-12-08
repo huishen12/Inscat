@@ -69,7 +69,9 @@ public class PostListFragment extends Fragment {
         @Override
         protected List<Post> doInBackground(Void... params) {
             try {
-                return Ins.getPostListSelf();
+                List<Post> posts = Ins.getFollowedPostListSelf();
+                posts.addAll(Ins.getPostListSelf());
+                return posts;
             } catch (IOException | JsonSyntaxException e) {
                 e.printStackTrace();
                 return null;

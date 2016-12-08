@@ -43,6 +43,18 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
+    <style name="AppTheme.TextView.1.Gray" parent="AppTheme.TextView.1">
+        <item name="android:textColor">@android:color/darker_gray</item>
+    </style>
+
+    <style name="AppTheme.TextView.2.Gray" parent="AppTheme.TextView.2">
+        <item name="android:textColor">@android:color/darker_gray</item>
+    </style>
+
+    <style name="AppTheme.TextView.3.Gray" parent="AppTheme.TextView.3">
+        <item name="android:textColor">@android:color/darker_gray</item>
+    </style>
+
     <style name="AppTheme.TextView.Clickable">
         <item name="android:background">?attr/selectableItemBackground</item>
         <item name="android:padding">@dimen/spacing_small</item>

@@ -21,6 +21,7 @@ import com.spacebunny.hshen.inscat.R;
 import com.spacebunny.hshen.inscat.ins.Ins;
 import com.spacebunny.hshen.inscat.model.User;
 import com.spacebunny.hshen.inscat.utils.ModelUtils;
+import com.spacebunny.hshen.inscat.view.favorite_list.CategoryListFragment;
 import com.spacebunny.hshen.inscat.view.post_list.LikeListFragment;
 import com.spacebunny.hshen.inscat.view.post_list.PostListFragment;
 import com.spacebunny.hshen.inscat.view.profile_detail.ProfileActivity;
@@ -98,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                         setTitle("Likes");
                         break;
                     case R.id.drawer_item_categories:
-                        fragment = PostListFragment.newInstance();
+                        fragment = CategoryListFragment.newInstance(false, null);
                         setTitle("Categories");
                         break;
                 }
@@ -107,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                 if (fragment != null) {
                     getSupportFragmentManager()
                             .beginTransaction()
-                            .add(R.id.fragment_container, fragment)
+                            .replace(R.id.fragment_container, fragment)
                             .commit();
                     return true;
                 }

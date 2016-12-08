@@ -11,11 +11,14 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
+import com.spacebunny.hshen.inscat.model.Comment;
+import com.spacebunny.hshen.inscat.model.Like;
 import com.spacebunny.hshen.inscat.model.Post;
 import com.spacebunny.hshen.inscat.model.User;
 import com.spacebunny.hshen.inscat.utils.ModelUtils;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.OkHttpClient;
@@ -28,6 +31,7 @@ public class Ins {
     private static final String TAG = "Instagram API";
 
     public static final int COUNT_PER_PAGE = 20;
+    public static final int POST_COUNT_PER_PAGE = 20;
 
     public static final String API_URL = "https://api.instagram.com/v1/";
 
@@ -45,8 +49,13 @@ public class Ins {
     private static final String KEY_USER_ID = "user_id";
 
     private static final TypeToken<List<Post>> POST_LIST_TYPE = new TypeToken<List<Post>>(){};
+    private static final TypeToken<List<User>> User_LIST_TYPE = new TypeToken<List<User>>(){};
+    private static final TypeToken<List<Comment>> COMMENT_LIST_TYPE = new TypeToken<List<Comment>>(){};
+    private static final TypeToken<List<Like>> LIKE_LIST_TYPE = new TypeToken<List<Like>>(){};
     private static final TypeToken<Post> POST_TYPE = new TypeToken<Post>(){};
     private static final TypeToken<User> USER_TYPE = new TypeToken<User>(){};
+    private static final TypeToken<Comment> COMMENT_TYPE = new TypeToken<Comment>(){};
+    private static final TypeToken<Like> LIKE_TYPE = new TypeToken<Like>(){};
 
     private static OkHttpClient client = new OkHttpClient();
 
@@ -62,6 +71,7 @@ public class Ins {
     private static Response makeRequest(Request request) throws IOException {
         Response response = client.newCall(request).execute();
         Log.d(TAG, "X-RateLimit-Remaining: " + response.header("X-RateLimit-Remaining"));
+        Log.d(TAG, "Response is " + response);
         return response;
     }
 
@@ -104,7 +114,7 @@ public class Ins {
 
     private static <T> T parsePostResponse(Response response, TypeToken<T> typeToken) throws IOException {
         String responseString = response.body().string();
-        Log.d(TAG, responseString);
+        Log.d(TAG, "Response string is " + responseString);
         JsonElement responseElement = new JsonParser().parse(responseString);
         JsonObject metaObject = responseElement.getAsJsonObject().getAsJsonObject("meta");
         Log.d(TAG, "User Media API response is " + metaObject.toString());
@@ -201,4 +211,39 @@ public class Ins {
         String likedPostListSelfUrl = USER_END_POINT + "self/media/liked";
         return parsePostResponse(makeGetRequest(likedPostListSelfUrl), POST_LIST_TYPE);
     }
+
+    public static List<Post> getFollowedPostListSelf() throws IOException, JsonSyntaxException {
+        List<Post> followedPosts = new ArrayList<Post>();
+        String followedUserListSelfUrl = USER_END_POINT + "self/follows";
+        List<User> followedUsers = parsePostResponse(makeGetRequest(followedUserListSelfUrl), User_LIST_TYPE);
+        for (User followedUser: followedUsers) {
+            List<Post> morePosts = getPostListUser(followedUser.id);
+            followedPosts.addAll(morePosts);
+        }
+        return followedPosts;
+    }
+
+    public static List<Comment> getMediaComments(String mediaId) throws IOException, JsonSyntaxException {
+        String mediaCommentsListUrl = MEDIA_END_POINT + mediaId + "/comments";
+        return parsePostResponse(makeGetRequest(mediaCommentsListUrl), COMMENT_LIST_TYPE);
+    }
+
+    public static List<Like> getMediaLikes(String mediaId) throws IOException, JsonSyntaxException {
+        String mediaLikesListUrl = MEDIA_END_POINT + mediaId + "/likes";
+        return parsePostResponse(makeGetRequest(mediaLikesListUrl), LIKE_LIST_TYPE);
+    }
+
+    public static List<Like> getMediaLikesWithBio(String mediaId) throws IOException {
+        String mediaLikesListUrl = MEDIA_END_POINT + mediaId + "/likes";
+        List<Like> likes = parsePostResponse(makeGetRequest(mediaLikesListUrl), LIKE_LIST_TYPE);
+        String userUrl;
+        User curUser = new User();
+        for (Like like : likes) {
+            userUrl = USER_END_POINT + like.id + "/";
+            curUser = parseUserResponse(makeGetRequest(userUrl), USER_TYPE);
+            like.userbio = curUser.bio;
+        }
+        return likes;
+    }
+
 }
