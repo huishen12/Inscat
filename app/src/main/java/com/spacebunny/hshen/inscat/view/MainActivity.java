@@ -139,8 +139,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        TextView logOutButton = (TextView) headerView.findViewById(R.id.nav_header_logout);
+        logOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Ins.logout(MainActivity.this);
 
-        //TODO: set up logout button
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
 }
