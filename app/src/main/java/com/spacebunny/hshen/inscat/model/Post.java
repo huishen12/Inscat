@@ -9,7 +9,7 @@ public class Post {
 
     public String id;
     public User user;
-    public String caption;
+    public Caption caption;
 
     public PostCounts likes;
     public PostCounts comments;

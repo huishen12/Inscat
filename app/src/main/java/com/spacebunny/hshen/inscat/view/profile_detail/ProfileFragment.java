@@ -268,7 +268,7 @@ public class ProfileFragment extends Fragment{
             post.likes.count = random.nextInt(200);
             post.comments = new PostCounts();
             post.comments.count = random.nextInt(50);
-            post.caption = "This is a description";
+            post.caption.text = "This is a description";
 
             postList.add(post);
         }
