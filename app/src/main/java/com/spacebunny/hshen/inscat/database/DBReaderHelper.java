@@ -171,6 +171,7 @@ public class DBReaderHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         Cursor res = db.rawQuery("SELECT * FROM " + CATEGORY_TABLE_NAME + " WHERE " +
                 CATEGORY_COLUMN_ID + "=?", new String[] {id} );
+        // TODO: investigate some crash here from null string, under github: "category crash #4"
         return res;
     }
 
